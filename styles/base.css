@@ -1,0 +1,258 @@
+:root {
+    --color-primary: #0d3d44;
+    --text-on-primary: #f4f4f4;
+    --text-on-secondary: #000000;
+
+    --color-button-border: var(--text-on-primary);
+    --color-button-primary-bg: var(--text-on-primary);
+    --color-button-primary-text: var(--color-primary);
+    --color-button-secondary-bg: var(--color-primary);
+    --color-button-secondary-text: var(--text-on-primary);
+
+    --font-family: 'Inter', sans-serif;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.main {
+    padding: 150px;
+}
+
+body {
+    background-color: var(--color-primary);
+    color: var(--text-on-primary);
+    font-family: var(--font-family);
+}
+
+.body--primary {
+    background-color: var(--color-primary);
+    color: var(--text-on-primary);
+}
+
+.body--secondary {
+    background-color: var(--text-on-primary);
+    color: var(--color-primary);
+}
+
+p, h2 {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 3fr 34px;
+    grid-template-rows: 1fr;
+    grid-template-areas: "logo nav shopping-cart";
+    align-items: center;
+    padding: 0 60px;
+}
+
+.header__link {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+header img {
+    grid-area: shopping-cart;
+}
+
+.nav {
+    display: inline-block;
+    justify-self: end;
+}
+
+.nav__list {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav__list-item {
+    margin-inline-end: 36px;
+    font-size: 20px;
+}
+
+.button {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 64px;
+    height: 80px;
+    border: 4px solid var(--color-button-border);
+    white-space: nowrap;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: outline 0.3s linear;
+}
+
+.button:hover, .button:focus {
+    outline: 2px solid var(--text-on-primary);
+}
+
+.button--primary {
+    background-color: var(--color-button-primary-bg);
+    color: var(--color-button-primary-text);
+}
+
+.button--secondary {
+    background-color: var(--color-button-secondary-bg);
+    color: var(--color-button-secondary-text);
+}
+
+.button-container {
+    display: flex;
+    margin-top: 40px;
+}
+
+.button:not(button:last-of-type) {
+    margin-inline-end: 20px;
+}
+
+.button__icon {
+    height: 20px;
+    vertical-align: middle;
+}
+
+.menu {
+    display: none;
+}
+
+.close {
+    display: none;
+}
+
+.menu, .close {
+    cursor: pointer;
+}
+
+
+@media (width < 1220px) {
+    .button {
+        font-size: 16px;
+        padding: 0 24px;
+        height: 50px;
+    }
+
+    .button img {
+        width: 20px;
+    }
+}
+
+@media (width < 840px ) {
+    .body--no-scroll {
+        overflow: hidden;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .nav {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--color-primary);
+        top: 60px;
+        left: -100%;
+        padding-top: 60px;
+        transition: left 0.3s linear;
+    }
+
+    .nav--visible {
+        left: 0;
+        animation: slideIn 0.3s forwards;
+    }
+
+    .menu--hidden {
+        display: none;
+    }
+
+    .close--visible {
+        display: block;
+    }
+
+    .nav__list {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 80%;
+    }
+
+    .nav__list-item {
+        font-size: 60px;
+        font-weight: bold;
+    }
+
+    .header {
+        grid-template-columns: 33px 1fr 34px;
+        justify-items: center;
+        align-items: center;
+    }
+}
+
+@media (width < 815px) {
+    .main {
+        padding: 75px;
+    }
+}
+
+@media (width < 700px) {
+    .button {
+        font-size: 14px;
+        margin-top: 24px;
+    }
+
+    .button-container {
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+}
+
+
+.button {
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+    background-color: var(--color-button-secondary-bg);
+    color: var(--color-button-secondary-text);
+    transform: translateY(-3px);
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.menu--hidden {
+    display: none;
+    animation: fadeOut 0.3s forwards;
+}
+
+.close--visible {
+    display: block;
+    animation: fadeIn 0.3s forwards;
+}
+
+.main__heading, .main__sub-heading {
+    animation: fadeIn 1s ease-in-out;
+}
